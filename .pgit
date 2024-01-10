@@ -1,4 +1,5 @@
 # Git Shortcuts
+# To use this, add "source /path/to/.pgit" to .bashrc or .bash_profile.
 
 # List out all branches.
 alias pgitb='git branch'
