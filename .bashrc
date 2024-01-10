@@ -25,12 +25,12 @@ alias pgitmasteronly='git checkout master && git branch | grep -v "main" | xargs
 # pgitpull - Sync the current branch with remote.
 alias pgitpull='git pull origin $(git symbolic-ref HEAD 2>/dev/null)'
 
-# pgitpush - Push the current branch with a custom commit message.
+# pgitpush "my commit message" - Push the current branch with a custom commit message.
 function pgitpush() {
   git add . && git commit -m "$1" && git push origin $(git symbolic-ref HEAD 2>/dev/null)
 }
 
-# pgitpushfast - Push the current branch with a simple commit message.
+# pgitpushfast - Push the current branch with a simple commit message ("update").
 alias pgitpushfast='git add . && git commit -m "update" && git push origin $(git symbolic-ref HEAD 2>/dev/null)'
 
 # pgithelp - List all pgit commands.
