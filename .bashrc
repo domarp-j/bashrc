@@ -11,17 +11,23 @@ alias pgitc='git checkout'
 # pgitcb - Check out a new branch.
 alias pgitcb='git checkout -b'
 
-# pgitmainsync - Sync main with remote.
-alias pgitmainsync='git checkout main && git pull origin main && git branch'
+# pgitxsync x - Sync branch x with remote.
+function pgitxsync() {
+  if [ -z "$1" ]; then
+    echo "Please provide a branch name, e.g. \"main\"."
+    return 1
+  fi
+  git checkout $1 && git pull origin $1 && git branch
+}
 
-# pgitmainonly - Delete all branches except main. Sync main with remote.
-alias pgitmainonly='git checkout main && git branch | grep -v "main" | xargs git branch -D && pgitmainsync'
-
-# pgitmastersync - Sync master with remote.
-alias pgitmastersync='git checkout master && git pull origin master && git branch'
-
-# pgitmasteronly - Delete all branches except master. Sync master with remote.
-alias pgitmasteronly='git checkout master && git branch | grep -v "main" | xargs git branch -D && pgitmastersync'
+# pgitxonly x - Delete all branches except x. Sync branch x with remote.
+function pgitxonly() {
+  if [ -z "$1" ]; then
+    echo "Please provide a branch name, e.g. \"main\"."
+    return 1
+  fi
+  git checkout $1 && git branch | grep -v "$1" | xargs git branch -D && git pull origin $1 && git branch
+}
 
 # pgitpull - Sync the current branch with remote.
 alias pgitpull='git pull origin $(git symbolic-ref HEAD 2>/dev/null)'
