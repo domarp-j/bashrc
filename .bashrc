@@ -36,3 +36,6 @@ alias pgitpushfast='git add . && git commit -m "update" && git push origin $(git
 # pgit - List all pgit commands.
 CURRENT_FILE_PATH="$(realpath "${BASH_SOURCE[0]}")"
 alias pgit="grep '^# pgit' "$CURRENT_FILE_PATH" | sed 's/^# //' | sort"
+
+# pgitsource - Navigate to the pgit source code from anywhere.
+alias pgitsource="cd $(dirname "$CURRENT_FILE_PATH")"
