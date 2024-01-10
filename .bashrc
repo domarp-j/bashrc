@@ -1,5 +1,5 @@
 ################################################################################
-# pgit - A collection of git aliases for personal use.
+# PGIT - A collection of git aliases for personal use.
 ################################################################################
 
 # pgitb - List out all branches.
