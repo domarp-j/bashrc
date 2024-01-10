@@ -33,6 +33,6 @@ function pgitpush() {
 # pgitpushfast - Push the current branch with a simple commit message ("update").
 alias pgitpushfast='git add . && git commit -m "update" && git push origin $(git symbolic-ref HEAD 2>/dev/null)'
 
-# pgithelp - List all pgit commands.
-# Find all lines in this file that begin with "# pgit". Filter out the "#", sort the lines alphabetically, then output to the terminal.
-alias pgithelp='grep "^# pgit" */.bashrc | sed "s/# //" | sort'
+# pgit - List all pgit commands.
+CURRENT_FILE_PATH="$(realpath "${BASH_SOURCE[0]}")"
+alias pgit="grep '^# pgit' "$CURRENT_FILE_PATH" | sed 's/^# //' | sort"
