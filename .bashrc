@@ -1,0 +1,11 @@
+# Git Shortcuts
+alias gitb='git branch'
+alias gitc='git checkout'
+alias gitcb='git checkout -b'
+alias gitlist='cat ~/.bashrc | grep "alias git"'
+alias gitmainonly='git checkout main && git pull origin main && git branch | grep -v "main" | xargs git branch -D'
+alias gitmainsync='git checkout main && git pull origin main && git branch'
+alias gitmasteronly='git checkout master && git pull origin master && git branch | grep -v "main" | xargs git branch -D'
+alias gitmastersync='git checkout master && git pull origin master && git branch'
+alias gitpull='git pull origin $(git symbolic-ref HEAD 2>/dev/null)'
+alias gitpush='git add . && git commit -m "update" && git push origin $(git symbolic-ref HEAD 2>/dev/null)'
