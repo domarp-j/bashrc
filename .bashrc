@@ -1,5 +1,6 @@
-# Git Shortcuts
-# To use this, add "source /path/to/.pgit" to .bashrc or .bash_profile.
+################################################################################
+# pgit - A collection of git aliases for personal use.
+################################################################################
 
 # pgitb - List out all branches.
 alias pgitb='git branch'
@@ -39,3 +40,6 @@ alias pgit="grep '^# pgit' "$CURRENT_FILE_PATH" | sed 's/^# //' | sort"
 
 # pgitsource - Navigate to the pgit source code from anywhere.
 alias pgitsource="cd $(dirname "$CURRENT_FILE_PATH")"
+
+# pgitwhere - Print the path to the pgit source code. Useful when running source within your own .bashrc file.
+alias pgitwhere="echo $CURRENT_FILE_PATH"
