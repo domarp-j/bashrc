@@ -44,13 +44,16 @@ function pgitpullx() {
   git pull origin $1
 }
 
-# pgitpush "my commit message" - Push the current branch with a custom commit message.
-function pgitpush() {
-  git add . && git commit -m "$1" && git push origin $(git symbolic-ref HEAD 2>/dev/null)
+# pgitpush - Push the current branch to remote.
+alias pgitpush='git push origin $(git symbolic-ref HEAD 2>/dev/null)'
+
+# pgitcommit "my commit message" - Push the current branch with a custom commit message.
+function pgitcommit() {
+  git add . && git commit -m "$1" && pgitpush
 }
 
-# pgitpushfast - Push the current branch with a simple commit message ("update").
-alias pgitpushfast='git add . && git commit -m "update" && git push origin $(git symbolic-ref HEAD 2>/dev/null)'
+# pgitcommitfast - Push the current branch with a simple commit message ("update").
+alias pgitcommitfast='git add . && git commit -m "update" && pgitpush'
 
 # pgit - List all pgit commands.
 CURRENT_FILE_PATH="$(realpath "${BASH_SOURCE[0]}")"
