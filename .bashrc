@@ -32,6 +32,15 @@ function pgitxonly() {
 # pgitpull - Sync the current branch with remote.
 alias pgitpull='git pull origin $(git symbolic-ref HEAD 2>/dev/null)'
 
+# pgitpullx - Sync remote branch x with current local branch.
+function pgitpullx() {
+  if [ -z "$1" ]; then
+    echo "Please provide a branch name, e.g. \"main\"."
+    return 1
+  fi
+  git pull origin $1
+}
+
 # pgitpush "my commit message" - Push the current branch with a custom commit message.
 function pgitpush() {
   git add . && git commit -m "$1" && git push origin $(git symbolic-ref HEAD 2>/dev/null)
