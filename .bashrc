@@ -2,7 +2,7 @@
 # PGIT - A collection of git aliases for personal use.
 ################################################################################
 
-# pgitb - List out all branches.
+# pgitb - List all branches.
 alias pgitb='git branch'
 
 # pgitc - Check out an existing branch.
