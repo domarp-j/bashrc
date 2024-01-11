@@ -53,20 +53,20 @@ function pgitpullfrom() {
 # pgitpush - Push the current branch to its remote counterpart.
 alias pgitpush='git push origin $(git symbolic-ref HEAD 2>/dev/null)'
 
-# pgitcommit "my commit message" - Push the current branch with a custom commit message.
-function pgitcommit() {
+# pgitcmtt "my commit message" - Push the current branch with a custom commit message.
+function pgitcmtt() {
   git add . && git commit -m "$1" && pgitpush
 }
 
-# pgitcommitfast - Push the current branch with a simple commit message ("update").
-alias pgitcommitfast='git add . && git commit -m "update" && pgitpush'
+# pgitcmtnow - Push the current branch with a simple commit message ("update").
+alias pgitcmtnow='git add . && git commit -m "update" && pgitpush'
 
 # pgit - List all pgit commands.
 CURRENT_FILE_PATH="$(realpath "${BASH_SOURCE[0]}")"
 alias pgit="grep '^# pgit' "$CURRENT_FILE_PATH" | sed 's/^# //' | sort"
 
-# pgitsource - Navigate to the pgit source code from anywhere.
-alias pgitsource="cd $(dirname "$CURRENT_FILE_PATH")"
+# pgitsrc - Navigate to the pgit source code from anywhere.
+alias pgitsrc="cd $(dirname "$CURRENT_FILE_PATH")"
 
 # pgitwhere - Print the path to the pgit source code. Useful when running source within your own .bashrc file.
 alias pgitwhere="echo $CURRENT_FILE_PATH"
