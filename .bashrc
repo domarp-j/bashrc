@@ -11,6 +11,9 @@ alias pgitc='git checkout'
 # pgitcb - Check out a new branch.
 alias pgitcb='git checkout -b'
 
+# pgitbd - Delete a branch.
+alias pgitbd='git branch -D'
+
 # pgitxsync x - Sync branch x with remote.
 function pgitxsync() {
   if [ -z "$1" ]; then
