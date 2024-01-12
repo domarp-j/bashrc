@@ -67,3 +67,9 @@ alias pgitsource="pgitsrc"
 
 # pgitwhere - Print the path to the pgit source code. Useful when running source within your own .bashrc file.
 alias pgitwhere="echo $CURRENT_FILE_PATH"
+
+################################################################################
+# POTPURRI
+################################################################################
+
+alias srcbashrc = "source ~/.bashrc"
