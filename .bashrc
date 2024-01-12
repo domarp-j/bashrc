@@ -2,12 +2,13 @@
 # PGIT - A collection of git aliases for personal use.
 ################################################################################
 
-# pgitb - List all branches. Aliases: pgitbl.
+# pgitb - List all branches. Aliases: pgitbl, pgitl.
 alias pgitb='git branch'
 alias pgitbl='pgitb'
+alias pgitl='pgitb'
 
-# pgitbc x - Check out branch x. If x does not exist, create it.
-function pgitbc() {
+# pgitc x - Check out branch x. If x does not exist, create it. Aliases: pgitbc.
+function pgitc() {
   branch_name="$1"
   if git rev-parse --quiet --verify "$branch_name" > /dev/null; then
     echo "Checking out existing branch: $branch_name"
@@ -17,9 +18,11 @@ function pgitbc() {
     git checkout -b "$branch_name"
   fi
 }
+alias pgitbc='pgitc'
 
-# pgitbd x - Delete branch x.
-alias pgitbd='git branch -D'
+# pgitd x - Delete branch x. Aliases: pgitbd.
+alias pgitd='git branch -D'
+alias pgitbd='pgitd'
 
 # pgitpull x? - Pull remote x to local. If x is not provided, pull remote to current branch.
 function pgitpull() {
