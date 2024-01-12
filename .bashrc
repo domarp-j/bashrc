@@ -72,4 +72,4 @@ alias pgitwhere="echo $CURRENT_FILE_PATH"
 # POTPURRI
 ################################################################################
 
-alias srcbashrc = "source ~/.bashrc"
+alias srcbashrc="source ~/.bashrc"
