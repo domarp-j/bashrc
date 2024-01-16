@@ -35,9 +35,9 @@ function pgitpull() {
 # pgitpush x? - Push local to remote x. If x is not provided, push to current branch in remote.
 function pgitpush() {
   if [ -z "$1" ]; then
-    git push origin $(git symbolic-ref HEAD 2>/dev/null)
+    git push --set-upstream origin $(git symbolic-ref HEAD 2>/dev/null)
   fi
-  git push origin $1
+  git push --set-upstream origin $1
 }
 
 # pgitonly x - Delete all branches except x.
