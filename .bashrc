@@ -40,15 +40,6 @@ function pgitpush() {
   git push --set-upstream origin $1
 }
 
-# pgitonly x - Delete all branches except x.
-function pgitonly() {
-  if [ -z "$1" ]; then
-    echo "Please provide a branch name, e.g. \"main\"."
-    return 1
-  fi
-  git checkout $1 && git branch | grep -v "$1" | xargs git branch -D && pgitpull $1
-}
-
 # pgitcmt x? - Push the current branch with commit message x. If x is not provided, branch is commited with message "update".
 function pgitcmt() {
   if [ -z "$1" ]; then
