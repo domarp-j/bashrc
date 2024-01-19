@@ -59,6 +59,10 @@ alias pgitsource="pgitsrc"
 # pgitwhere - Print the path to the pgit source code. Useful when running source within your own .bashrc file.
 alias pgitwhere="echo $CURRENT_FILE_PATH"
 
+# pgitclean - Delete all local branches that have been merged into main.
+alias pgitclean="pgitc main && git branch --merged main | grep -v '^\*\|main$' | xargs -n 1 git branch -d"
+
+
 ################################################################################
 # POTPURRI
 ################################################################################
