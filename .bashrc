@@ -10,6 +10,10 @@ alias pgitl='pgitb'
 # pgitc x - Check out branch x. If x does not exist, create it. Aliases: pgitbc.
 function pgitc() {
   branch_name="$1"
+  if [ -z "$branch_name" ]; then
+    echo "You must provide a branch name."
+    return 1
+  fi
   if git rev-parse --quiet --verify "$branch_name" > /dev/null; then
     echo "Checking out existing branch: $branch_name"
     git checkout "$branch_name"
@@ -23,6 +27,10 @@ alias pgitbc='pgitc'
 # pgitd x - Delete branch x. Aliases: pgitbd.
 alias pgitd='git branch -D'
 alias pgitbd='pgitd'
+
+# pgitdf x - Get the diff of the current branch. Aliases: pgitdiff.
+alias pgitdf='git diff'
+alias pgitdiff='pgitdf'
 
 # pgitpull x? - Pull remote x to local. If x is not provided, pull remote to current branch.
 function pgitpull() {
@@ -57,7 +65,7 @@ function pgitcmt() {
 function pgitcmtmain() {
   # Verify that the current branch is main.
   if [ "$(git symbolic-ref --short HEAD)" != "main" ]; then
-    echo "You are not on the main branch."
+    echo "You are not on the main branch. Commit aborted."
     return 1
   fi
   if [ -z "$1" ]; then
