@@ -101,3 +101,4 @@ alias pgitclean="pgitc main && git branch --merged main | grep -v '^\*\|main$' |
 ################################################################################
 
 alias srcbashrc="source ~/.bashrc"
+alias codebashrc="code ~/.bashrc"
