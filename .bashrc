@@ -24,13 +24,19 @@ function pgitc() {
 }
 alias pgitbc='pgitc'
 
-# pgitd x - Delete branch x. Aliases: pgitbd.
-alias pgitd='git branch -D'
-alias pgitbd='pgitd'
+# pgitd x - Delete any branch that regex-matches x.
+function pgitd() {
+  if [ -z "$1" ]; then
+    echo "You must provide an input."
+    return 1
+  fi
+  git branch | grep -E "$1" | xargs -n 1 git branch -D
+}
 
-# pgitdf x - Get the diff of the current branch. Aliases: pgitdiff.
+# pgitdf x - Get the diff of the current branch. Aliases: pgitdiff, pgitdif.
 alias pgitdf='git diff'
 alias pgitdiff='pgitdf'
+alias pgitdif='pgitdf'
 
 # pgitpull x? - Pull remote x to local. If x is not provided, pull remote to current branch.
 function pgitpull() {
