@@ -59,6 +59,16 @@ function pgitpush() {
   git push --set-upstream origin $1
 }
 
+# pgitpushmain - Push to main. The current branch must also be main.
+function pgitpushmain() {
+  # Verify that the current branch is main.
+  if [ "$(git symbolic-ref --short HEAD)" != "main" ]; then
+    echo "You are not on the main branch. Push aborted."
+    return 1
+  fi
+  git push --set-upstream origin main
+}
+
 # pgitcmt x? - Push the current branch with commit message x. If x is not provided, branch is commited with message "update".
 function pgitcmt() {
   # Do not commit to main directly under any circumstances.
@@ -83,7 +93,7 @@ function pgitcmtmain() {
     echo "You must provide a commit message."
     return 1
   fi
-  git add . && git commit -m "$1" && pgitpush
+  git add . && git commit -m "$1" && pgitpushmain
 }
 
 # pgit - List all pgit commands.
