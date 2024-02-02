@@ -33,7 +33,7 @@ function pgitd() {
   git branch | grep -E "$1" | xargs -n 1 git branch -D
 }
 
-# pgitdf x - Get the diff of the current branch. Aliases: pgitdiff, pgitdif.
+# pgitdf - Get the diff of the current branch. Aliases: pgitdiff, pgitdif.
 alias pgitdf='git diff'
 alias pgitdiff='pgitdf'
 alias pgitdif='pgitdf'
@@ -48,9 +48,9 @@ function pgitpull() {
 
 # pgitpush x? - Push local to remote x. If x is not provided, push to current branch in remote.
 function pgitpush() {
-  # Do not push to main directly under any circumstances.
-  if [ "$(git symbolic-ref --short HEAD)" = "main" ]; then
-    echo "You are on the main branch. You cannot push directly to this branch. Use pgitpushmain instead, and do so only if you're certain."
+  # Reject if x is main or if x is blank but current branch is main.
+  if [ "$1" = "main" ] || ([ -z "$1" ] && [ "$(git symbolic-ref --short HEAD)" = "main" ]); then
+    echo "You cannot push directly to the main branch. Use pgitpushmain instead."
     return 1
   fi
   if [ -z "$1" ]; then
@@ -59,11 +59,13 @@ function pgitpush() {
   git push --set-upstream origin $1
 }
 
-# pgitpushmain - Push to main. The current branch must also be main.
+# pgitpushmain - Push the current branch to main. Do so with caution.
 function pgitpushmain() {
-  # Verify that the current branch is main.
-  if [ "$(git symbolic-ref --short HEAD)" != "main" ]; then
-    echo "You are not on the main branch. Push aborted."
+  # Ask for confirmation (yes or y) before pushing to main.
+  read -p "Are you sure you want to push to main? " -n 1 -r
+  echo
+  if [[ ! $REPLY =~ ^[Yy]$ ]]; then
+    echo "Push to main aborted."
     return 1
   fi
   git push --set-upstream origin main
@@ -93,7 +95,7 @@ function pgitcmtmain() {
     echo "You must provide a commit message."
     return 1
   fi
-  git add . && git commit -m "$1" && pgitpushmain
+  git add . && git commit -m "$1" && git push --set-upstream origin main
 }
 
 # pgit - List all pgit commands.
