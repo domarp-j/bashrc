@@ -48,6 +48,11 @@ function pgitpull() {
 
 # pgitpush x? - Push local to remote x. If x is not provided, push to current branch in remote.
 function pgitpush() {
+  # Do not push to main directly under any circumstances.
+  if [ "$(git symbolic-ref --short HEAD)" = "main" ]; then
+    echo "You are on the main branch. You cannot push directly to this branch. Use pgitpushmain instead, and do so only if you're certain."
+    return 1
+  fi
   if [ -z "$1" ]; then
     git push --set-upstream origin $(git symbolic-ref HEAD 2>/dev/null)
   fi
@@ -94,6 +99,16 @@ alias pgitwhere="echo $CURRENT_FILE_PATH"
 
 # pgitclean - Delete all local branches that have been merged into main.
 alias pgitclean="pgitc main && git branch --merged main | grep -v '^\*\|main$' | xargs -n 1 git branch -d"
+
+# pgitm x - Merge x into your current branch. Aliases: pgitmerge.
+function pgitm() {
+  if [ -z "$1" ]; then
+    echo "You must provide a branch name."
+    return 1
+  fi
+  git merge "$1"
+}
+alias pgitmerge="pgitm"
 
 
 ################################################################################
