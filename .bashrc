@@ -4,3 +4,5 @@
 
 alias codebashrc="code ~/.bashrc"
 alias srcbashrc="source ~/.bashrc"
+
+source .pgit
