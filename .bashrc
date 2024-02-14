@@ -128,3 +128,6 @@ alias pgitwhere="echo $CURRENT_FILE_PATH"
 
 # pgitclean - Delete all local branches that have been merged into main.
 alias pgitclean="pgitc main && git branch --merged main | grep -v '^\*\|main$' | xargs -n 1 git branch -D"
+
+# pgitstsh - Stash changes.
+alias pgitstsh="git stash"
