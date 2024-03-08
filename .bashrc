@@ -98,6 +98,9 @@ function pgitcmt() {
   if [ -z "$1" ]; then
     git add . && git commit -m "update" && pgitpush
   fi
+  echo "Pulling from remote..."
+  git pull origin $(git symbolic-ref HEAD 2>/dev/null)
+  echo "Committing..."
   git add . && git commit -m "$1" && pgitpush
 }
 
@@ -112,6 +115,9 @@ function pgitcmtmain() {
     echo "You must provide a commit message."
     return 1
   fi
+  echo "Pulling from main..."
+  git pull origin main
+  echo "Committing..."
   git add . && git commit -m "$1" && git push --set-upstream origin main
 }
 
@@ -129,5 +135,10 @@ alias pgitwhere="echo $CURRENT_FILE_PATH"
 # pgitclean - Delete all local branches that have been merged into main.
 alias pgitclean="pgitc main && git branch --merged main | grep -v '^\*\|main$' | xargs -n 1 git branch -D"
 
-# pgitstsh - Stash changes.
-alias pgitstsh="git stash"
+# pgitstash - Stash changes. Aliases: pgitstsh.
+alias pgitstash="git stash"
+alias pgitstsh="pgitstash"
+
+# pgitstashp - Pop the last stash. Aliases: pgitstshp.
+alias pgitstashp="git stash pop"
+alias pgitstshp="pgitstashp"
