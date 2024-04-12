@@ -7,6 +7,7 @@ alias srcbashrc="source ~/.bashrc"
 
 ################################################################################
 # PGIT - A collection of git aliases for personal use.
+# ⚠️ DEPRECATED ⚠️ - This has been superceded by oh my zsh's git plugin.
 ################################################################################
 
 # pgitb - List all branches. Aliases: pgitbl, pgitl.

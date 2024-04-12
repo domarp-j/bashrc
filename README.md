@@ -1,6 +1,7 @@
 # bashrc
 
-My personal .bashrc commands.
+To enable, update your root .bashrc to only contain the following:
 
-Tested with:
-- WSL 2, Ubuntu 20.04.6 LTS
+```
+source /path/to/bashrc/.bashrc
+```
